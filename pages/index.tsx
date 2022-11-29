@@ -1,30 +1,33 @@
-import { Button, HTag } from '../components'
+import { Button, HTag, Rating } from '../components'
 import { useEffect, useState } from 'react'
 
 export default function Home(): JSX.Element {
 
-  const [counter, setCounter] = useState<number>(0)
-  const [isOdd, setIsOdd] = useState<boolean>(false)
-
-  useEffect(() => {
-    setIsOdd(counter % 2 > 0)
-  }, [counter])
-
-  useEffect(() => {
-    console.log(`counter: ${counter}`)
-    return () => {
-      console.log(`unmounted`)
-    }
-  })
+  const [rating, setRating] = useState<number>(3)
 
   return (
     <div>
-      <HTag tag='h3'>{`Count: ${counter}`}</HTag>
+      <HTag tag='h3'>{`Rating: ${rating}`}</HTag>
 
-      <Button appearance='primary' arrow='right' onClick={() => setCounter(x => x+1)}>Increase</Button>
-      <Button appearance='ghost' arrow='down' onClick={() => counter>0 ? setCounter(x => x-1) : null}>Decrease</Button>
+      <Button
+        appearance='primary'
+        style={{marginRight: 10}}
+        onClick={() => setRating(x => x<5 ? x+1 : x)}
+      >
+        Increase
+      </Button>
+      <Button
+        appearance='primary'
+        onClick={() => setRating(x => x>0 ? x-1 : x)}
+      >
+        Decrease
+      </Button>
 
-      <HTag tag='h3'>{`Is odd: ${isOdd}`}</HTag>
+      <Rating
+        rating={rating}
+        isEditable
+        setRating={setRating}
+      />
     </div>
   )
 }
