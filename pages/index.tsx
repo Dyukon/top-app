@@ -1,12 +1,13 @@
 import { Button, HTag, Rating } from '../components'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { withLayout } from '../layout/Layout'
 
-export default function Home(): JSX.Element {
+function Home(): JSX.Element {
 
   const [rating, setRating] = useState<number>(3)
 
   return (
-    <div>
+    <>
       <HTag tag='h3'>{`Rating: ${rating}`}</HTag>
 
       <Button
@@ -28,6 +29,8 @@ export default function Home(): JSX.Element {
         isEditable
         setRating={setRating}
       />
-    </div>
+    </>
   )
 }
+
+export default withLayout(Home)
