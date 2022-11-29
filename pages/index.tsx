@@ -1,6 +1,7 @@
 import { Button, HTag, Rating } from '../components'
 import { useState } from 'react'
 import { withLayout } from '../layout/Layout'
+import { GetStaticProps } from 'next'
 
 function Home(): JSX.Element {
 
@@ -34,3 +35,11 @@ function Home(): JSX.Element {
 }
 
 export default withLayout(Home)
+
+export const getStaticProps: GetStaticProps = async() => {
+  return {
+    props: {
+
+    }
+  }
+}
